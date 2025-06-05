@@ -1,0 +1,19 @@
+{
+  "name": "playwright-ts-starter",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:headed": "npx playwright test --headed",
+    "test:desktop_chrome": " npx playwright test --project=Desktop_Chrome",
+    "test:desktop_firefox": " npx playwright test --project=Desktop_Firefox",
+    "test:mobile": "npx playwright test --project=Mobile_Chrome",
+    "test:tablet": "npx playwright test --project=Tablet_iPad"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.43.1",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "date-fns": "^4.1.0"
+  }
+}
