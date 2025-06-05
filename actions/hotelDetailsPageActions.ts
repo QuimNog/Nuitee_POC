@@ -11,3 +11,7 @@ export async function validateHotelDetailsFields(page: Page) {
 export async function chooseFirstRoom(page: Page) {
     await page.locator('.room-overlay.radius_md').locator('[aria-label="Choose room"]').nth(0).click();
 }
+
+export async function validateHotelName(page: Page, hotelName: string) {
+    await expect(page.locator('.title-section--content--title')).toContainText(hotelName);
+}

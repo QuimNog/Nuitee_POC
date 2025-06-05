@@ -71,3 +71,4 @@ async function getTotalGuests(page: Page): Promise<number> {
 
     return totalGuests;
 }
+

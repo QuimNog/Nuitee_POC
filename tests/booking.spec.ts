@@ -2,8 +2,9 @@ import { expect } from '@playwright/test';
 import { test } from './setup';
 import { getDateString } from '../utils/dateUtils';
 import { searchHotel } from '../actions/landingPageActions';
-import { chooseFirstRoom } from '../actions/hotelDetailsPageActions';
+import { validateHotelName, chooseFirstRoom } from '../actions/hotelDetailsPageActions';
 import { fillPersonalInformation, validateCheckoutFields } from '../actions/chcekoutPageActions';
+import { filterByPropertyName, selectHotelByName, selectFirstHotel } from '../actions/resultsPageActions';
 
 test('cant confirm a booking without mandatory fields', async ({ page }) => {
     await test.step('Precondition: Search for hotels', async () => {
@@ -12,10 +13,7 @@ test('cant confirm a booking without mandatory fields', async ({ page }) => {
         searchHotel(page, 'Barcelona', fromDate, toDate, 1, 3);
     });
 
-    const [newPage] = await Promise.all([
-        page.context().waitForEvent('page'),
-        page.locator('.v-hotelList__cards__hotel').nth(0).locator('.availability-text').click()
-    ]);
+    const newPage = await selectFirstHotel(page);
 
     await chooseFirstRoom(newPage);
 
