@@ -7,7 +7,7 @@
     "test:desktop_chrome": " npx playwright test --project=Desktop_Chrome",
     "test:desktop_firefox": " npx playwright test --project=Desktop_Firefox",
     "test:mobile": "npx playwright test --project=Mobile_Chrome",
-    "test:tablet": "npx playwright test --project=Tablet_iPad"
+    "test:tablet": "npx playwright test --project=Tablet_Chrome"
   },
   "devDependencies": {
     "@playwright/test": "^1.43.1",
