@@ -1,0 +1,40 @@
+name: Run Playwright Tests for a Single Project
+
+on:
+  workflow_call:
+    inputs:
+      project:
+        required: true
+        type: string
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    # Allow mobile/tablet jobs to fail without failing the entire workflow
+    continue-on-error: ${{ inputs.project == 'mobile' || inputs.project == 'tablet' }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
+      - name: Run Playwright tests for ${{ inputs.project }}
+        run: npm run test:${{ inputs.project }}
+
+      - name: Upload Playwright HTML report
+        if: always() # ensure this runs even if tests fail
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-${{ inputs.project }}
+          path: playwright-report

@@ -1,0 +1,32 @@
+name: Full Playwright Test Suite
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  desktop_chrome:
+    name: Desktop Chrome
+    uses: ./.github/workflows/run-playwright-test.yml
+    with:
+      project: desktop_chrome
+
+  desktop_firefox:
+    name: Desktop Firefox
+    uses: ./.github/workflows/run-playwright-test.yml
+    with:
+      project: desktop_firefox
+
+  mobile:
+    name: Mobile Chrome
+    uses: ./.github/workflows/run-playwright-test.yml
+    with:
+      project: mobile
+
+  tablet:
+    name: Tablet iPad
+    uses: ./.github/workflows/run-playwright-test.yml
+    with:
+      project: tablet
